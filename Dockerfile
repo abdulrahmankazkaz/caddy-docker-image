@@ -5,12 +5,10 @@ RUN xcaddy build \
 
 FROM caddy:alpine
 
-ENV XDG_CONFIG_HOME=/config \
-    XDG_DATA_HOME=/data \
-    TZ=Asia/Baghdad
 
 RUN addgroup -S caddy && adduser -S -G caddy caddy \
-    && mkdir -p /config /data \
+    && mkdir -p /config/caddy \
+    && mkdir -p /data/caddy \
     && chown -R caddy:caddy /config /data
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
